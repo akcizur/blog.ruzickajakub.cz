@@ -20,6 +20,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchOpen, setSearchOpen] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
+  const searchFormRef = useRef<HTMLFormElement>(null)
   const [selectedPostId, setSelectedPostId] = useState<number | null>(() => {
     const value = new URLSearchParams(window.location.search).get('post')
     const id = value ? Number(value) : NaN
@@ -54,6 +55,20 @@ export default function App() {
   }, [searchOpen])
 
   useEffect(() => {
+    if (!searchOpen) return
+
+    const handleOutsidePointer = (event: PointerEvent) => {
+      const target = event.target
+      if (target instanceof Node && !searchFormRef.current?.contains(target)) {
+        setSearchOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handleOutsidePointer)
+    return () => document.removeEventListener('pointerdown', handleOutsidePointer)
+  }, [searchOpen])
+
+  useEffect(() => {
     const syncPost = () => {
       const value = new URLSearchParams(window.location.search).get('post')
       const id = value ? Number(value) : NaN
@@ -85,35 +100,40 @@ export default function App() {
           <span className="brand">Blok</span>
 
           <nav className="header-actions" aria-label="Ovládání webu">
-            <button
-              type="button"
-              className="nav-button"
-              onClick={handleLayoutToggle}
-              title={`Rozložení: ${VIEW_MODES[viewMode].label}`}
-              aria-label={`Změnit rozložení. Aktuálně: ${VIEW_MODES[viewMode].label}`}
-            >
-              {(() => {
-                const ViewIcon = VIEW_MODES[viewMode].icon
-                return <ViewIcon className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-              })()}
-            </button>
+            {!searchOpen && (
+              <>
+                <button
+                  type="button"
+                  className="nav-button"
+                  onClick={handleLayoutToggle}
+                  title={`Rozložení: ${VIEW_MODES[viewMode].label}`}
+                  aria-label={`Změnit rozložení. Aktuálně: ${VIEW_MODES[viewMode].label}`}
+                >
+                  {(() => {
+                    const ViewIcon = VIEW_MODES[viewMode].icon
+                    return <ViewIcon className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+                  })()}
+                </button>
 
-            <button
-              type="button"
-              className="nav-button"
-              onClick={handleThemeToggle}
-              title={`Motiv: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
-              aria-label={`Změnit motiv. Aktuálně: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
-            >
-              {theme === 'light' ? (
-                <Sun className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-              ) : (
-                <Moon className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-              )}
-            </button>
+                <button
+                  type="button"
+                  className="nav-button"
+                  onClick={handleThemeToggle}
+                  title={`Motiv: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
+                  aria-label={`Změnit motiv. Aktuálně: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
+                >
+                  {theme === 'light' ? (
+                    <Sun className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+                  ) : (
+                    <Moon className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+                  )}
+                </button>
+              </>
+            )}
 
             {searchOpen ? (
               <form
+                ref={searchFormRef}
                 id="navbar-search"
                 className="nav-search-form"
                 role="search"
@@ -125,7 +145,16 @@ export default function App() {
                   }
                 }}
               >
-                <Search className="ui-icon nav-search-icon" size={15} strokeWidth={2} aria-hidden="true" />
+                <button
+                  type="button"
+                  className="nav-search-action"
+                  onClick={() => searchInputRef.current?.focus()}
+                  aria-label="Zaměřit vyhledávání"
+                  title="Hledat"
+                >
+                  <Search className="ui-icon" size={14} strokeWidth={2} aria-hidden="true" />
+                </button>
+
                 <input
                   ref={searchInputRef}
                   className="nav-search-input"
@@ -137,6 +166,7 @@ export default function App() {
                   autoComplete="off"
                   spellCheck={false}
                 />
+
                 <button
                   type="button"
                   className="nav-search-close"
@@ -161,8 +191,6 @@ export default function App() {
                 <Search className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
               </button>
             )}
-
-
           </nav>
         </div>
 
