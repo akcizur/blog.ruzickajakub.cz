@@ -179,10 +179,9 @@ article:focus-visible {
 }
 
 .nav-search-form {
-  flex: 1 1 clamp(160px, 24vw, 220px);
-  width: clamp(140px, 24vw, 220px);
-  min-width: 140px;
-  max-width: 220px;
+  width: clamp(150px, 22vw, 210px);
+  min-width: 150px;
+  max-width: 210px;
   height: 36px;
   display: flex;
   align-items: center;
@@ -192,23 +191,14 @@ article:focus-visible {
   border-radius: 999px;
   background: var(--surface-dark);
   color: var(--text-soft);
-  transition:
-    width .2s ease,
-    border-color .15s ease,
-    background-color .15s ease,
-    color .15s ease,
-    box-shadow .15s ease;
-}
-
-.nav-search-form:hover {
-  border-color: var(--text-faint);
+  overflow: hidden;
+  animation: nav-search-in .18s ease both;
 }
 
 .nav-search-form:focus-within {
   border-color: var(--text-faint);
   background: var(--surface);
   color: var(--text);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--text) 5%, transparent);
 }
 
 .nav-search-icon {
@@ -220,8 +210,10 @@ article:focus-visible {
   min-width: 0;
   width: 100%;
   padding: 0;
-  border: 0;
-  outline: 0;
+  margin: 0;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
   appearance: none;
   background: transparent;
   color: var(--text);
@@ -229,6 +221,13 @@ article:focus-visible {
   font-size: 12px;
   font-weight: 500;
   line-height: 1;
+}
+
+.nav-search-input:focus,
+.nav-search-input:focus-visible {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
 }
 
 .nav-search-input::-webkit-search-cancel-button {
@@ -239,7 +238,7 @@ article:focus-visible {
   color: var(--text-faint);
 }
 
-.nav-search-clear {
+.nav-search-close {
   width: 22px;
   min-width: 22px;
   height: 22px;
@@ -255,10 +254,23 @@ article:focus-visible {
   cursor: pointer;
 }
 
-.nav-search-clear:hover,
-.nav-search-clear:focus-visible {
+.nav-search-close:hover,
+.nav-search-close:focus-visible {
   background: var(--surface-strong);
   color: var(--text);
+}
+
+@keyframes nav-search-in {
+  from {
+    opacity: 0;
+    transform: scaleX(.92);
+    transform-origin: right center;
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
 }
 
 .main-content {
@@ -775,7 +787,6 @@ article:focus-visible {
   }
 
   .nav-search-form {
-    flex: 1 1 auto;
     width: min(190px, calc(100vw - 144px));
     max-width: none;
     min-width: 112px;
