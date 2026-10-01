@@ -17,7 +17,6 @@ export default function App() {
   const { preferences, updatePreference } = usePreferences()
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [selectedPostId, setSelectedPostId] = useState<number | null>(() => {
@@ -53,30 +52,6 @@ export default function App() {
     window.addEventListener('popstate', syncPost)
     return () => window.removeEventListener('popstate', syncPost)
   }, [])
-
-  useEffect(() => {
-    if (!searchOpen) return
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setSearchOpen(false)
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [searchOpen])
-
-  useEffect(() => {
-    if (searchOpen) searchInputRef.current?.focus()
-  }, [searchOpen])
-
-  function handleSearchToggle() {
-    setSearchOpen(open => {
-      if (open) setSearchQuery('')
-      return !open
-    })
-  }
 
   function handleLayoutToggle() {
     const index = VIEW_MODE_ORDER.indexOf(viewMode)
@@ -127,54 +102,40 @@ export default function App() {
               )}
             </button>
 
-            {searchOpen ? (
-              <div id="navbar-search" className="nav-search-inline is-open" role="search">
-                <Search className="ui-icon nav-search-icon" size={15} strokeWidth={2} aria-hidden="true" />
-                <input
-                  ref={searchInputRef}
-                  className="nav-search-input"
-                  type="search"
-                  value={searchQuery}
-                  onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value)}
-                  placeholder="Hledat poznámky…"
-                  aria-label="Hledat poznámky"
-                />
-                {searchQuery && (
-                  <button
-                    type="button"
-                    className="nav-search-clear"
-                    onClick={() => setSearchQuery('')}
-                    aria-label="Vymazat vyhledávání"
-                  >
-                    <X className="ui-icon" size={13} strokeWidth={2} aria-hidden="true" />
-                  </button>
-                )}
+            <form
+              id="navbar-search"
+              className="nav-search-form"
+              role="search"
+              onSubmit={event => event.preventDefault()}
+            >
+              <Search className="ui-icon nav-search-icon" size={15} strokeWidth={2} aria-hidden="true" />
+              <input
+                ref={searchInputRef}
+                className="nav-search-input"
+                type="search"
+                value={searchQuery}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value)}
+                placeholder="Hledat…"
+                aria-label="Hledat poznámky"
+                autoComplete="off"
+                spellCheck={false}
+              />
+              {searchQuery && (
                 <button
                   type="button"
-                  className="nav-search-close"
+                  className="nav-search-clear"
                   onClick={() => {
                     setSearchQuery('')
-                    setSearchOpen(false)
+                    searchInputRef.current?.focus()
                   }}
-                  aria-label="Zavřít vyhledávání"
-                  title="Zavřít vyhledávání"
+                  aria-label="Vymazat vyhledávání"
+                  title="Vymazat"
                 >
-                  <X className="ui-icon" size={14} strokeWidth={2} aria-hidden="true" />
+                  <X className="ui-icon" size={13} strokeWidth={2} aria-hidden="true" />
                 </button>
-              </div>
-            ) : (
-              <button
-                type="button"
-                className="nav-button search-toggle"
-                onClick={handleSearchToggle}
-                title="Vyhledávání"
-                aria-label="Vyhledávání"
-                aria-expanded={false}
-                aria-controls="navbar-search"
-              >
-                <Search className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-              </button>
-            )}
+              )}
+            </form>
+
           </nav>
         </div>
 
