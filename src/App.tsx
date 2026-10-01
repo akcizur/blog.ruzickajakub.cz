@@ -18,6 +18,7 @@ export default function App() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [searchOpen, setSearchOpen] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [selectedPostId, setSelectedPostId] = useState<number | null>(() => {
     const value = new URLSearchParams(window.location.search).get('post')
@@ -42,6 +43,15 @@ export default function App() {
         .includes(query),
     )
   }, [searchQuery])
+
+  useEffect(() => {
+    if (!searchOpen) return
+
+    const frame = window.requestAnimationFrame(() => {
+      searchInputRef.current?.focus()
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [searchOpen])
 
   useEffect(() => {
     const syncPost = () => {
@@ -102,39 +112,56 @@ export default function App() {
               )}
             </button>
 
-            <form
-              id="navbar-search"
-              className="nav-search-form"
-              role="search"
-              onSubmit={event => event.preventDefault()}
-            >
-              <Search className="ui-icon nav-search-icon" size={15} strokeWidth={2} aria-hidden="true" />
-              <input
-                ref={searchInputRef}
-                className="nav-search-input"
-                type="search"
-                value={searchQuery}
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value)}
-                placeholder="Hledat…"
-                aria-label="Hledat poznámky"
-                autoComplete="off"
-                spellCheck={false}
-              />
-              {searchQuery && (
+            {searchOpen ? (
+              <form
+                id="navbar-search"
+                className="nav-search-form"
+                role="search"
+                onSubmit={event => event.preventDefault()}
+                onKeyDown={event => {
+                  if (event.key === 'Escape') {
+                    setSearchOpen(false)
+                    searchInputRef.current?.blur()
+                  }
+                }}
+              >
+                <Search className="ui-icon nav-search-icon" size={15} strokeWidth={2} aria-hidden="true" />
+                <input
+                  ref={searchInputRef}
+                  className="nav-search-input"
+                  type="search"
+                  value={searchQuery}
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value)}
+                  placeholder="Hledat…"
+                  aria-label="Hledat poznámky"
+                  autoComplete="off"
+                  spellCheck={false}
+                />
                 <button
                   type="button"
-                  className="nav-search-clear"
+                  className="nav-search-close"
                   onClick={() => {
                     setSearchQuery('')
-                    searchInputRef.current?.focus()
+                    setSearchOpen(false)
                   }}
-                  aria-label="Vymazat vyhledávání"
-                  title="Vymazat"
+                  aria-label="Zavřít vyhledávání"
+                  title="Zavřít"
                 >
                   <X className="ui-icon" size={13} strokeWidth={2} aria-hidden="true" />
                 </button>
-              )}
-            </form>
+              </form>
+            ) : (
+              <button
+                type="button"
+                className="nav-button nav-search-trigger"
+                onClick={() => setSearchOpen(true)}
+                title="Vyhledávání"
+                aria-label="Otevřít vyhledávání"
+              >
+                <Search className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+              </button>
+            )}
+
 
           </nav>
         </div>
