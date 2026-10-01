@@ -19,6 +19,7 @@ function PostMeta({ post, compact = false }: { post: Post; compact?: boolean }) 
     </div>
   )
 }
+
 export function PostCard({ post, mode, index, articleClassName }: PostCardProps) {
   if (mode === 'compact') {
     return (
@@ -58,13 +59,7 @@ export function PostCard({ post, mode, index, articleClassName }: PostCardProps)
     <a className="post-link" href={`?post=${post.id}`} aria-label={`Číst: ${post.title}`}><article className={articleClassName} tabIndex={0}>
       <h4>{post.title}</h4>
       <p>{post.excerpt}</p>
-      <div className="post-card-meta">
-        <span>{post.category}</span>
-        <span aria-hidden="true">·</span>
-        <span>{post.date}</span>
-        <span aria-hidden="true">·</span>
-        <span>{post.readTime}</span>
-      </div>
+      <PostMeta post={post} />
     </article></a>
   )
 }
