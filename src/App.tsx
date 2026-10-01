@@ -97,7 +97,7 @@ export default function App() {
     <div className="app" data-theme={theme}>
       <header className="site-header">
         <div className="header-inner">
-          <span className="brand">Dimple</span>
+          <span className="brand">Blok</span>
 
           <nav className="header-actions" aria-label="Site controls">
             <button
@@ -156,8 +156,8 @@ export default function App() {
                   type="search"
                   value={searchQuery}
                   onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value)}
-                  placeholder="Search posts by title, category, or date..."
-                  aria-label="Search posts"
+                  placeholder="Search notes by title, topic, or date..."
+                  aria-label="Search notes"
                 />
                 {searchQuery && (
                   <button
@@ -181,20 +181,20 @@ export default function App() {
         <main className="main-content">
           <section className="hero">
             <h1 className="hero-title">
-              Writing about craft,<br />ideas, and the work.
+              Notes on design, code,<br />and building things.
             </h1>
             <p className="hero-copy">
-              Dimple is an independent blog about writing, thinking, and building things worth reading. Published weekly.
+              Blok is an independent notebook by Jakub Růžička about UI/UX, frontend, full-stack development, and the details behind digital work. Notes, experiments, and lessons from making things.
             </p>
-            <code className="site-chip">dimple.blog</code>
+            <code className="site-chip">blok.ruzickajakub.cz</code>
           </section>
 
           <div className="posts-heading">
-            <h2>Posts</h2>
+            <h2>Notes</h2>
             <span>
               {searchQuery
-                ? `${filteredPosts.length} of ${posts.length} articles`
-                : `${posts.length} articles`}
+                ? `${filteredPosts.length} of ${posts.length} notes`
+                : `${posts.length} notes`}
             </span>
           </div>
 
@@ -213,7 +213,7 @@ export default function App() {
           {searchQuery && filteredPosts.length === 0 && (
             <div className="empty-search">
               <Search className="ui-icon" size={20} strokeWidth={2} aria-hidden="true" />
-              <strong>No posts found</strong>
+              <strong>No notes found</strong>
               <span>Try a different search.</span>
             </div>
           )}
@@ -222,14 +222,14 @@ export default function App() {
             {subscribed ? (
               <div className="subscription-success">
                 <div className="success-icon">✓</div>
-                <div className="success-title">You're subscribed.</div>
-                <p>First issue lands next Thursday.</p>
+                <div className="success-title">You're on the list.</div>
+                <p>The next note will land in your inbox.</p>
               </div>
             ) : (
               <>
                 <div className="newsletter-copy">
-                  <h3>Get it in your inbox</h3>
-                  <p>One email per week. No noise, no sponsors, no paywalls.</p>
+                  <h3>Get the next note</h3>
+                  <p>Occasional notes on design, code, and the work behind the screen.</p>
                 </div>
                 <form onSubmit={handleSubscribe} className="subscribe-form">
                   <input
@@ -254,7 +254,7 @@ export default function App() {
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-copy">
-            <span><strong>DIMPLE</strong> · Independent writing</span>
+            <span><strong>BLOK</strong> · Design, code, ideas</span>
             <span>© 2026</span>
           </div>
 
