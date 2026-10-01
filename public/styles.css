@@ -378,23 +378,30 @@ article:focus-visible {
   line-height: 1.7;
 }
 
-.post-meta {
+.post-card-meta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border-soft);
-  color: var(--text-faint);
+  gap: 8px;
+  color: var(--text-soft);
   font-family: var(--font-secondary);
   font-size: 11px;
   font-weight: 400;
   font-style: normal;
-  letter-spacing: .02em;
+  line-height: 1;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.post-meta span:first-child {
-  text-transform: uppercase;
+.post-list .post-card-meta {
+  padding-top: 10px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-faint);
+}
+
+.post-grid .post-card-meta,
+.post-magazine .post-card-meta {
+  margin-bottom: 10px;
 }
 
 .post-grid {
@@ -404,17 +411,7 @@ article:focus-visible {
   background: var(--surface);
 }
 
-.post-kicker {
-  margin-bottom: 10px;
-  color: var(--text-faint);
-  font-family: var(--font-secondary);
-  font-size: 11px;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: .03em;
-  line-height: 1.4;
-}
-
+.post-kicker,
 .post-kicker-date {
   font-family: var(--font-secondary);
   font-weight: 400;
@@ -443,7 +440,7 @@ article:focus-visible {
   font-size: 11px;
   font-weight: 400;
   font-style: normal;
-  letter-spacing: .02em;
+  letter-spacing: .05em;
 }
 
 .post-magazine {
@@ -491,6 +488,11 @@ article:focus-visible {
   border-bottom: 1px solid var(--border-soft);
 }
 
+.post-compact .compact-meta {
+  flex-shrink: 0;
+  color: var(--text-subtle);
+}
+
 .posts-compact {
   border-top: 1px solid var(--border-soft);
 }
@@ -515,12 +517,6 @@ article:focus-visible {
 .post-category {
   flex-shrink: 0;
   color: var(--text-subtle);
-  font-family: var(--font-secondary);
-  font-size: 11px;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: .06em;
-  text-transform: uppercase;
 }
 
 .newsletter {
@@ -705,6 +701,7 @@ article:focus-visible {
 .post-category,
 .post-kicker,
 .post-meta,
+.post-card-meta,
 .post-date,
 .compact-date {
   font-family: var(--font-secondary);
@@ -715,10 +712,10 @@ article:focus-visible {
 .post-date-text,
 .post-kicker-date {
   font-family: var(--font-secondary) !important;
-  font-size: 9px !important;
+  font-size: inherit !important;
   font-weight: 400;
-  line-height: 1;
-  letter-spacing: .01em;
+  line-height: inherit;
+  letter-spacing: inherit;
 }
 
 .post-link .post-date-text {
