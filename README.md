@@ -1,12 +1,12 @@
-# Dimple
+# Blok
 
 > Osobní blog a publikační rozhraní postavené na Vite + React + TypeScript. Jednoduché, monochromatické, statické a připravené pro GitHub Pages.
 
-[![Website](https://img.shields.io/badge/website-dimple.blog-000000?style=flat-square)](https://dimple.blog)
+[![Website](https://img.shields.io/badge/website-blok.ruzickajakub.cz-000000?style=flat-square)](https://blok.ruzickajakub.cz)
 [![GitHub Pages](https://img.shields.io/badge/deploy-GitHub%20Pages-000000?style=flat-square)](https://akcizur.github.io/blog.ruzickajakub.cz/)
 [![Stack](https://img.shields.io/badge/stack-Vite%20%2B%20React%20%2B%20TS-000000?style=flat-square)](#technologický-stack)
 
-Dimple je minimalistický blogový frontend pro psaní, myšlení a publikování. Projekt je navržen jako statická aplikace bez backendu, bez databáze a bez CMS. Všechny články jsou evidované přímo v kódu, ale vzhled a UX jsou pečlivě navržené pro dlouhé čtení a nízkou režii.
+Blok je minimalistický blogový frontend pro psaní, myšlení a publikování. Projekt je navržen jako statická aplikace bez backendu, bez databáze a bez CMS. Všechny články jsou evidované přímo v kódu, ale vzhled a UX jsou pečlivě navržené pro dlouhé čtení a nízkou režii.
 
 ## Hlavní vlastnosti
 
@@ -80,7 +80,7 @@ Projekt je navržen jako tiny publishing frontend:
 
 ## Designové principy
 
-Dimple je záměrně minimalistický:
+Blok je záměrně minimalistický:
 
 - úzký editorialní sloupec
 - monochromatická palette
@@ -201,7 +201,7 @@ V repozitáři jsou doplňkové dokumenty:
 ## Repository
 
 - GitHub: https://github.com/akcizur/blog.ruzickajakub.cz
-- Web: https://dimple.blog
+- Web: https://blok.ruzickajakub.cz
 
 ## Licence
 
@@ -211,4 +211,4 @@ Tento projekt nepoužívá žádnou explicitní licenční hlavičku; pokud jde 
 
 Tento projekt není „blog engine“ v klasickém CMS smyslu. Je to designově čistý, statický publikační frontend pro osobní publikaci. Jeho síla spočívá v jednoduchosti, rychlosti a v tom, že se snadno udržuje.
 
-If you want, I can also make a second version of the README in a more premium / editorial style, or a shorter version optimized for GitHub profile landing pages.
+Dokumentace odpovídá aktuální podobě projektu Blok.
