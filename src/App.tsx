@@ -99,13 +99,13 @@ export default function App() {
         <div className="header-inner">
           <span className="brand">Blok</span>
 
-          <nav className="header-actions" aria-label="Site controls">
+          <nav className="header-actions" aria-label="Ovládání webu">
             <button
               type="button"
               className="nav-button"
               onClick={handleLayoutToggle}
-              title={`Layout: ${VIEW_MODES[viewMode].label}`}
-              aria-label={`Change layout. Current: ${VIEW_MODES[viewMode].label}`}
+              title={`Rozložení: ${VIEW_MODES[viewMode].label}`}
+              aria-label={`Změnit rozložení. Aktuálně: ${VIEW_MODES[viewMode].label}`}
             >
               {(() => {
                 const ViewIcon = VIEW_MODES[viewMode].icon
@@ -117,8 +117,8 @@ export default function App() {
               type="button"
               className="nav-button"
               onClick={handleThemeToggle}
-              title={`Theme: ${theme === 'light' ? 'Light' : 'Dark'}`}
-              aria-label={`Change theme. Current: ${theme === 'light' ? 'Light' : 'Dark'}`}
+              title={`Motiv: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
+              aria-label={`Změnit motiv. Aktuálně: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
             >
               {theme === 'light' ? (
                 <Sun className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
@@ -131,8 +131,8 @@ export default function App() {
               type="button"
               className={`nav-button search-toggle${searchOpen ? ' is-active' : ''}`}
               onClick={handleSearchToggle}
-              title={searchOpen ? 'Close search' : 'Search'}
-              aria-label={searchOpen ? 'Close search' : 'Search'}
+              title={searchOpen ? 'Zavřít vyhledávání' : 'Vyhledávání'}
+              aria-label={searchOpen ? 'Zavřít vyhledávání' : 'Vyhledávání'}
               aria-expanded={searchOpen}
               aria-controls="navbar-search"
             >
@@ -156,15 +156,15 @@ export default function App() {
                   type="search"
                   value={searchQuery}
                   onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value)}
-                  placeholder="Search notes by title, topic, or date..."
-                  aria-label="Search notes"
+                  placeholder="Hledat poznámky podle názvu, tématu nebo data..."
+                  aria-label="Hledat poznámky"
                 />
                 {searchQuery && (
                   <button
                     type="button"
                     className="nav-search-clear"
                     onClick={() => setSearchQuery('')}
-                    aria-label="Clear search"
+                    aria-label="Vymazat vyhledávání"
                   >
                     <X className="ui-icon" size={14} strokeWidth={2} aria-hidden="true" />
                   </button>
@@ -181,20 +181,20 @@ export default function App() {
         <main className="main-content">
           <section className="hero">
             <h1 className="hero-title">
-              Notes on design, code,<br />and building things.
+              Poznámky o designu, kódu,<br />a tvorbě digitálních věcí.
             </h1>
             <p className="hero-copy">
-              Blok is an independent notebook by Jakub Růžička about UI/UX, frontend, full-stack development, and the details behind digital work. Notes, experiments, and lessons from making things.
+              Blok je osobní zápisník Jakuba Růžičky o UI/UX designu, vývoji, kódu a brandingu. Najdeš tu poznámky z frontend a full-stack vývoje, práci s design systémy, tvorbu značek, experimenty a postřehy z reálných projektů.
             </p>
             <code className="site-chip">blok.ruzickajakub.cz</code>
           </section>
 
           <div className="posts-heading">
-            <h2>Notes</h2>
+            <h2>Poznámky</h2>
             <span>
               {searchQuery
-                ? `${filteredPosts.length} of ${posts.length} notes`
-                : `${posts.length} notes`}
+                ? `${filteredPosts.length} z ${posts.length} poznámek`
+                : `${posts.length} poznámek`}
             </span>
           </div>
 
@@ -213,8 +213,8 @@ export default function App() {
           {searchQuery && filteredPosts.length === 0 && (
             <div className="empty-search">
               <Search className="ui-icon" size={20} strokeWidth={2} aria-hidden="true" />
-              <strong>No notes found</strong>
-              <span>Try a different search.</span>
+              <strong>Žádné poznámky nenalezeny</strong>
+              <span>Zkus jiné hledání.</span>
             </div>
           )}
 
@@ -222,14 +222,14 @@ export default function App() {
             {subscribed ? (
               <div className="subscription-success">
                 <div className="success-icon">✓</div>
-                <div className="success-title">You're on the list.</div>
-                <p>The next note will land in your inbox.</p>
+                <div className="success-title">Jsi na seznamu.</div>
+                <p>Další poznámka dorazí do e-mailu.</p>
               </div>
             ) : (
               <>
                 <div className="newsletter-copy">
-                  <h3>Get the next note</h3>
-                  <p>Occasional notes on design, code, and the work behind the screen.</p>
+                  <h3>Získej další poznámku</h3>
+                  <p>Občasná dávka poznámek o designu, kódu, vývoji a práci za obrazovkou.</p>
                 </div>
                 <form onSubmit={handleSubscribe} className="subscribe-form">
                   <input
@@ -237,11 +237,11 @@ export default function App() {
                     type="email"
                     value={email}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}
-                    placeholder="your@email.com"
+                    placeholder="tvuj@email.cz"
                     required
-                    aria-label="Email address"
+                    aria-label="E-mailová adresa"
                   />
-                  <button type="submit" className="subscribe-button" title="Subscribe" aria-label="Subscribe">
+                  <button type="submit" className="subscribe-button" title="Odebírat" aria-label="Odebírat">
                     <Mail className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
                   </button>
                 </form>
@@ -254,38 +254,38 @@ export default function App() {
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-copy">
-            <span><strong>BLOK</strong> · Design, code, ideas</span>
+            <span><strong>BLOK</strong> · Design, code, branding</span>
             <span>© 2026</span>
           </div>
 
-          <nav className="footer-links" aria-label="External links">
+          <nav className="footer-links" aria-label="Externí odkazy">
             <a
               className="footer-icon-link"
               href="https://blok.ruzickajakub.cz"
               target="_blank"
               rel="noreferrer"
-              title="Website"
-              aria-label="Open website"
+              title="Web"
+              aria-label="Otevřít web"
             >
               <Globe2 className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
             </a>
 
             <a
               className="footer-icon-link"
-              href="mailto:hello@dimple.blog"
-              title="Mail"
-              aria-label="Send email"
+              href="mailto:hello@ruzickajakub.cz"
+              title="E-mail"
+              aria-label="Odeslat e-mail"
             >
               <Mail className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
             </a>
 
             <a
               className="footer-icon-link"
-              href="https://github.com/akcizur/kaap"
+              href="https://github.com/akcizur/blog.ruzickajakub.cz"
               target="_blank"
               rel="noreferrer"
-              title="GitHub"
-              aria-label="Open GitHub repository"
+              title="GitHub repozitář"
+              aria-label="Otevřít GitHub repozitář"
             >
               <svg className="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.47.09.64-.2.64-.45v-1.72c-2.62.57-3.18-1.26-3.18-1.26-.43-1.1-1.05-1.4-1.05-1.4-.86-.59.07-.58.07-.58.95.07 1.45.97 1.45.97.85 1.45 2.22 1.03 2.76.79.09-.61.33-1.03.6-1.27-2.09-.24-4.29-1.05-4.29-4.68 0-1.03.37-1.87.97-2.53.1-.24-.42-1.2.09-2.5 0 0 .79-.25 2.59.97A9 9 0 0 1 12 6.9c.8 0 1.6.11 2.35.33 1.8-1.22 2.59-.97 2.59-.97.51 1.3.19 2.26.09 2.5.6.66.97 1.5.97 2.53 0 3.64-2.2 4.44-4.3 4.67.34.3.64.88.64 1.78v2.64c0 .25.17.54.64.45A9.5 9.5 0 0 0 12 2.5Z" />
