@@ -770,7 +770,7 @@ article:focus-visible {
   }
 
   .nav-search-inline.is-open {
-    width: min(220px, calc(100vw - 138px));
+    width: min(220px, calc(100vw - 166px));
     padding-left: 10px;
   }
 
