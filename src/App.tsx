@@ -100,37 +100,6 @@ export default function App() {
           <span className="brand">Blok</span>
 
           <nav className="header-actions" aria-label="Ovládání webu">
-            {!searchOpen && (
-              <>
-                <button
-                  type="button"
-                  className="nav-button"
-                  onClick={handleLayoutToggle}
-                  title={`Rozložení: ${VIEW_MODES[viewMode].label}`}
-                  aria-label={`Změnit rozložení. Aktuálně: ${VIEW_MODES[viewMode].label}`}
-                >
-                  {(() => {
-                    const ViewIcon = VIEW_MODES[viewMode].icon
-                    return <ViewIcon className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-                  })()}
-                </button>
-
-                <button
-                  type="button"
-                  className="nav-button"
-                  onClick={handleThemeToggle}
-                  title={`Motiv: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
-                  aria-label={`Změnit motiv. Aktuálně: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
-                >
-                  {theme === 'light' ? (
-                    <Sun className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-                  ) : (
-                    <Moon className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-                  )}
-                </button>
-              </>
-            )}
-
             <div className={`nav-search-shell${searchOpen ? ' is-open' : ''}`}>
               <button
                 type="button"
@@ -196,6 +165,37 @@ export default function App() {
                 </button>
               </form>
             </div>
+
+            {!searchOpen && (
+              <>
+                <button
+                  type="button"
+                  className="nav-button"
+                  onClick={handleThemeToggle}
+                  title={`Motiv: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
+                  aria-label={`Změnit motiv. Aktuálně: ${theme === 'light' ? 'Světlý' : 'Tmavý'}`}
+                >
+                  {theme === 'light' ? (
+                    <Sun className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+                  ) : (
+                    <Moon className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  className="nav-button"
+                  onClick={handleLayoutToggle}
+                  title={`Rozložení: ${VIEW_MODES[viewMode].label}`}
+                  aria-label={`Změnit rozložení. Aktuálně: ${VIEW_MODES[viewMode].label}`}
+                >
+                  {(() => {
+                    const ViewIcon = VIEW_MODES[viewMode].icon
+                    return <ViewIcon className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+                  })()}
+                </button>
+              </>
+            )}
           </nav>
         </div>
 
