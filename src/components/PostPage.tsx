@@ -8,9 +8,9 @@ type PostPageProps = {
 export function PostPage({ post }: PostPageProps) {
   return (
     <main className="main-content post-page">
-      <a className="back-link" href="./" aria-label="Back to posts">
+      <a className="back-link" href="./" aria-label="Back to notes">
         <ArrowLeft className="ui-icon" size={16} strokeWidth={2} aria-hidden="true" />
-        <span>Back to posts</span>
+        <span>Back to notes</span>
       </a>
 
       <article className="post-detail">
