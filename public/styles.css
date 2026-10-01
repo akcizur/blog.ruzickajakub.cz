@@ -187,7 +187,7 @@ article:focus-visible {
   align-items: center;
   gap: 8px;
   padding: 0 7px 0 12px;
-  border: 1px solid var(--border-strong);
+  border: 0;
   border-radius: 999px;
   background: var(--surface-dark);
   color: var(--text-soft);
@@ -196,7 +196,7 @@ article:focus-visible {
 }
 
 .nav-search-form:focus-within {
-  border-color: var(--text-faint);
+  border: 0;
   background: var(--surface);
   color: var(--text);
 }
