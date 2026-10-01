@@ -261,7 +261,7 @@ export default function App() {
           <nav className="footer-links" aria-label="External links">
             <a
               className="footer-icon-link"
-              href="https://dimple.blog"
+              href="https://blok.ruzickajakub.cz"
               target="_blank"
               rel="noreferrer"
               title="Website"
