@@ -38,7 +38,7 @@ export default function App() {
     if (!query) return posts
 
     return posts.filter(post =>
-      [post.title, post.excerpt, post.category, post.date]
+      [post.title, post.excerpt, post.category, post.date, post.content]
         .join(' ')
         .toLowerCase()
         .includes(query),
