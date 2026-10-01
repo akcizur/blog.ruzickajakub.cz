@@ -27,6 +27,8 @@ export function PostPage({ post }: PostPageProps) {
         <div className="post-detail-rule" />
 
         <p className="post-detail-excerpt">{post.excerpt}</p>
+
+        <div className="post-detail-body" dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
     </main>
   )
