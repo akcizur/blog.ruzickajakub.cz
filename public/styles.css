@@ -753,29 +753,6 @@ article:focus-visible {
   margin: 0 auto;
 }
 
-.post-detail-kicker,
-.post-detail-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-soft);
-  font-family: var(--font-secondary);
-  font-size: 11px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-}
-
-.post-detail-kicker {
-  margin-bottom: 18px;
-}
-
-.post-detail-meta {
-  color: var(--text-soft);
-}
-
 .post-detail-title {
   margin: 0 0 16px;
   font-size: clamp(32px, 6.5vw, 54px);
@@ -788,16 +765,23 @@ article:focus-visible {
 .post-detail-meta {
   display: flex;
   align-items: center;
-  color: var(--text-faint);
-}
-
-.post-detail-readtime {
+  gap: 8px;
+  margin: 0;
+  color: var(--text-soft);
   font-family: var(--font-secondary);
   font-size: 11px;
   font-weight: 400;
-  letter-spacing: .05em;
+  font-style: normal;
   line-height: 1;
+  letter-spacing: .05em;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.post-detail-meta::-webkit-scrollbar {
+  display: none;
 }
 
 .post-detail-rule {
