@@ -433,16 +433,6 @@ article:focus-visible {
   line-height: 1.65;
 }
 
-.post-date,
-.compact-date {
-  color: var(--text-subtle);
-  font-family: var(--font-secondary);
-  font-size: 11px;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: .05em;
-}
-
 .post-magazine {
   padding: 20px 0;
   border-bottom: 1px solid var(--border-soft);
@@ -453,10 +443,6 @@ article:focus-visible {
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--surface);
-}
-
-.post-magazine.is-featured .post-kicker {
-  margin-bottom: 8px;
 }
 
 .post-magazine h4 {
@@ -512,11 +498,6 @@ article:focus-visible {
   letter-spacing: -.01em;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.post-category {
-  flex-shrink: 0;
-  color: var(--text-subtle);
 }
 
 .newsletter {
@@ -698,31 +679,7 @@ article:focus-visible {
 
 .handwritten,
 .site-chip,
-.post-category,
-.post-kicker,
-.post-meta,
-.post-card-meta,
-.post-date,
-.compact-date {
-  font-family: var(--font-secondary);
-  font-weight: 400;
-  font-style: normal;
-}
-
-.post-date-text,
-.post-kicker-date {
-  font-family: var(--font-secondary) !important;
-  font-size: inherit !important;
-  font-weight: 400;
-  line-height: inherit;
-  letter-spacing: inherit;
-}
-
-.post-link .post-date-text {
-  white-space: nowrap;
-}
-
-.post-page {
+.post-link .post-page {
   padding-top: 36px;
 }
 
