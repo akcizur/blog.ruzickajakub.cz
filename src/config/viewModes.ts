@@ -25,25 +25,25 @@ export const VIEW_MODE_ORDER: ViewMode[] = [
 export const VIEW_MODES: Record<ViewMode, ViewModeConfig> = {
   list: {
     icon: List,
-    label: 'List',
+    label: 'Seznam',
     containerClass: 'posts posts-list',
     articleClassName: 'post post-list',
   },
   grid: {
     icon: Grid2X2,
-    label: 'Grid',
+    label: 'Mřížka',
     containerClass: 'posts posts-grid',
     articleClassName: 'post post-grid',
   },
   magazine: {
     icon: Newspaper,
-    label: 'Magazine',
+    label: 'Magazín',
     containerClass: 'posts posts-magazine',
     articleClassName: 'post post-magazine',
   },
   compact: {
     icon: Rows3,
-    label: 'Compact',
+    label: 'Kompaktní',
     containerClass: 'posts posts-compact',
     articleClassName: 'post post-compact',
   },
