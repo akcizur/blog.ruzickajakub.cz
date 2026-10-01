@@ -131,12 +131,24 @@ export default function App() {
               </>
             )}
 
-            {searchOpen ? (
+            <div className={`nav-search-shell${searchOpen ? ' is-open' : ''}`}>
+              <button
+                type="button"
+                className="nav-button nav-search-trigger"
+                onClick={() => setSearchOpen(true)}
+                title="Vyhledávání"
+                aria-label="Otevřít vyhledávání"
+                tabIndex={searchOpen ? -1 : 0}
+              >
+                <Search className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+              </button>
+
               <form
                 ref={searchFormRef}
                 id="navbar-search"
                 className="nav-search-form"
                 role="search"
+                aria-hidden={!searchOpen}
                 onSubmit={event => event.preventDefault()}
                 onKeyDown={event => {
                   if (event.key === 'Escape') {
@@ -147,10 +159,11 @@ export default function App() {
               >
                 <button
                   type="button"
-                  className="nav-search-action"
+                  className="nav-button nav-search-action"
                   onClick={() => searchInputRef.current?.focus()}
                   aria-label="Zaměřit vyhledávání"
                   title="Hledat"
+                  tabIndex={searchOpen ? 0 : -1}
                 >
                   <Search className="ui-icon" size={14} strokeWidth={2} aria-hidden="true" />
                 </button>
@@ -165,6 +178,7 @@ export default function App() {
                   aria-label="Hledat poznámky"
                   autoComplete="off"
                   spellCheck={false}
+                  tabIndex={searchOpen ? 0 : -1}
                 />
 
                 <button
@@ -176,21 +190,12 @@ export default function App() {
                   }}
                   aria-label="Zavřít vyhledávání"
                   title="Zavřít"
+                  tabIndex={searchOpen ? 0 : -1}
                 >
                   <X className="ui-icon" size={13} strokeWidth={2} aria-hidden="true" />
                 </button>
               </form>
-            ) : (
-              <button
-                type="button"
-                className="nav-button"
-                onClick={() => setSearchOpen(true)}
-                title="Vyhledávání"
-                aria-label="Otevřít vyhledávání"
-              >
-                <Search className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-              </button>
-            )}
+            </div>
           </nav>
         </div>
 
