@@ -826,6 +826,120 @@ article:focus-visible {
   line-height: 1.7;
 }
 
+.post-detail-body {
+  margin-top: 36px;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.post-detail-body > :first-child {
+  margin-top: 0;
+}
+
+.post-detail-body > :last-child {
+  margin-bottom: 0;
+}
+
+.post-detail-body h2,
+.post-detail-body h3,
+.post-detail-body h4 {
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.25;
+}
+
+.post-detail-body h2 {
+  margin: 40px 0 14px;
+  font-size: 25px;
+}
+
+.post-detail-body h3 {
+  margin: 32px 0 12px;
+  font-size: 20px;
+}
+
+.post-detail-body h4 {
+  margin: 26px 0 10px;
+  font-size: 16px;
+}
+
+.post-detail-body p {
+  margin: 0 0 18px;
+}
+
+.post-detail-body ul,
+.post-detail-body ol {
+  margin: 0 0 20px;
+  padding-left: 24px;
+}
+
+.post-detail-body li {
+  margin: 6px 0;
+  padding-left: 4px;
+}
+
+.post-detail-body a {
+  color: var(--text);
+  text-underline-offset: 3px;
+}
+
+.post-detail-body strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.post-detail-body blockquote {
+  margin: 24px 0;
+  padding: 2px 0 2px 18px;
+  border-left: 2px solid var(--border-strong);
+  color: var(--text-soft);
+}
+
+.post-detail-body code {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: var(--surface-strong);
+  color: var(--text);
+  font-family: var(--font-secondary);
+  font-size: .9em;
+}
+
+.post-detail-body pre {
+  margin: 24px 0;
+  padding: 18px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.post-detail-body pre code {
+  display: block;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.7;
+  white-space: pre;
+}
+
+.post-detail-body hr {
+  height: 1px;
+  margin: 32px 0;
+  border: 0;
+  background: var(--border);
+}
+
+.post-detail-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 24px auto;
+  border-radius: 12px;
+}
+
 @media (max-width: 980px) {
   .header-actions {
     overflow: visible;
