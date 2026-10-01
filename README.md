@@ -6,7 +6,7 @@
 [![GitHub Pages](https://img.shields.io/badge/deploy-GitHub%20Pages-000000?style=flat-square)](https://akcizur.github.io/blog.ruzickajakub.cz/)
 [![Stack](https://img.shields.io/badge/stack-Vite%20%2B%20React%20%2B%20TS-000000?style=flat-square)](#technologický-stack)
 
-Blok je minimalistický blogový frontend pro psaní, myšlení a publikování. Projekt je navržen jako statická aplikace bez backendu, bez databáze a bez CMS. Všechny články jsou evidované přímo v kódu, ale vzhled a UX jsou pečlivě navržené pro dlouhé čtení a nízkou režii.
+Blok je minimalistický blogový frontend pro psaní, myšlení a publikování. Projekt je navržen jako statická aplikace bez backendu, bez databáze a bez CMS. Obsah článků je uložený v Markdown souborech a při buildu se načítá jako součást aplikace. Vzhled a UX jsou navržené pro dlouhé čtení a nízkou režii.
 
 ## Hlavní vlastnosti
 
@@ -26,7 +26,8 @@ Projekt je navržen jako tiny publishing frontend:
 - `index.html` = shell aplikace
 - `src/main.tsx` = bootstrap Reactu
 - `src/App.tsx` = hlavní orchestrace UI a state
-- `src/data/posts.ts` = obsah článků
+- `src/data/posts.ts` = loader a parser Markdown článků
+- `src/content/posts/*.md` = zdrojový obsah článků + frontmatter
 - `src/components/*` = UI komponenty
 - `public/styles.css` = globální design tokens a styling
 
@@ -41,6 +42,8 @@ Projekt je navržen jako tiny publishing frontend:
 ├── src/
 │   ├── components/
 │   ├── config/
+│   ├── content/
+│   │   └── posts/
 │   ├── data/
 │   ├── hooks/
 │   ├── App.tsx
@@ -91,25 +94,31 @@ Blok je záměrně minimalistický:
 
 ## Obsah a data
 
-Články jsou definované v `src/data/posts.ts` jako statická data. Každý záznam obsahuje:
+Články jsou samostatné Markdown soubory v `src/content/posts/`. Metadata je uložená ve frontmatteru a samotný článek tvoří Markdown tělo.
 
-```ts
-export type Post = {
-  id: number
-  title: string
-  excerpt: string
-  category: string
-  date: string
-  readTime: string
-}
+Příklad:
+
+```md
+---
+id: 7
+title: "Název článku"
+excerpt: "Krátké shrnutí pro kartu článku."
+category: "Development"
+date: "2. 10. 2026"
+readTime: "5 min"
+---
+
+# Název článku
+
+Obsah článku v Markdownu.
 ```
 
-Tento model je záměrně jednoduchý a vhodný pro osobní publikování bez CMS.
+Při buildu Vite načte všechny `*.md` soubory přes `import.meta.glob`. `src/data/posts.ts` z nich vytvoří jednotný datový model a převede Markdown na HTML pro detail článku.
 
 ## Vyhledávání a navigace
 
 - vyhledávání probíhá čistě v prohlížeči
-- články se filtrují na základě `title`, `excerpt`, `category` a `date`
+- články se filtrují na základě metadat i obsahu Markdownu
 - detail článku se otevírá přes `?post=<id>`
 - URL je synchronizována s výběrem článku
 - `Escape` zavírá vyhledávací overlay
