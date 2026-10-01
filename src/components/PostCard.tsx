@@ -13,10 +13,15 @@ export function PostCard({ post, mode, index, articleClassName }: PostCardProps)
     return (
       <a className="post-link" href={`?post=${post.id}`} aria-label={`Číst: ${post.title}`}><article className={articleClassName} tabIndex={0}>
         <div className="compact-copy">
-          <span className="post-category">{post.category}</span>
           <span className="compact-title">{post.title}</span>
         </div>
-        <span className="compact-date post-date-text">{post.date}</span>
+        <div className="post-card-meta compact-meta">
+          <span>{post.category}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.date}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.readTime}</span>
+        </div>
       </article></a>
     )
   }
@@ -27,7 +32,13 @@ export function PostCard({ post, mode, index, articleClassName }: PostCardProps)
         className={`${articleClassName}${index === 0 ? ' is-featured' : ''}`}
         tabIndex={0}
       >
-        <div className="post-kicker">{post.category} · <span className="post-kicker-date">{post.date}</span></div>
+        <div className="post-card-meta">
+          <span>{post.category}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.date}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.readTime}</span>
+        </div>
         <h4>{post.title}</h4>
         {index === 0 && <p>{post.excerpt}</p>}
       </article></a>
@@ -37,10 +48,15 @@ export function PostCard({ post, mode, index, articleClassName }: PostCardProps)
   if (mode === 'grid') {
     return (
       <a className="post-link" href={`?post=${post.id}`} aria-label={`Číst: ${post.title}`}><article className={articleClassName} tabIndex={0}>
-        <div className="post-kicker">{post.category}</div>
+        <div className="post-card-meta">
+          <span>{post.category}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.date}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.readTime}</span>
+        </div>
         <h4>{post.title}</h4>
         <p>{post.excerpt}</p>
-        <div className="post-date post-date-text">{post.date}</div>
       </article></a>
     )
   }
@@ -49,9 +65,12 @@ export function PostCard({ post, mode, index, articleClassName }: PostCardProps)
     <a className="post-link" href={`?post=${post.id}`} aria-label={`Číst: ${post.title}`}><article className={articleClassName} tabIndex={0}>
       <h4>{post.title}</h4>
       <p>{post.excerpt}</p>
-      <div className="post-meta">
+      <div className="post-card-meta">
         <span>{post.category}</span>
-        <span><span className="post-date-text">{post.date}</span> · {post.readTime}</span>
+        <span aria-hidden="true">·</span>
+        <span>{post.date}</span>
+        <span aria-hidden="true">·</span>
+        <span>{post.readTime}</span>
       </div>
     </article></a>
   )
