@@ -14,16 +14,14 @@ export function PostPage({ post }: PostPageProps) {
       </a>
 
       <article className="post-detail">
-        <div className="post-detail-kicker">
-          <span>{post.category}</span>
-          <span>·</span>
-          <span className="post-date-text">{post.date}</span>
-        </div>
-
         <h1 className="post-detail-title">{post.title}</h1>
 
         <div className="post-detail-meta">
-          <span className="post-detail-readtime">{post.readTime}</span>
+          <span>{post.category}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.date}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.readTime}</span>
         </div>
 
         <div className="post-detail-rule" />
