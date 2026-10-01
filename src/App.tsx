@@ -127,36 +127,16 @@ export default function App() {
               )}
             </button>
 
-            <button
-              type="button"
-              className={`nav-button search-toggle${searchOpen ? ' is-active' : ''}`}
-              onClick={handleSearchToggle}
-              title={searchOpen ? 'Zavřít vyhledávání' : 'Vyhledávání'}
-              aria-label={searchOpen ? 'Zavřít vyhledávání' : 'Vyhledávání'}
-              aria-expanded={searchOpen}
-              aria-controls="navbar-search"
-            >
-              {searchOpen ? (
-                <X className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-              ) : (
-                <Search className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
-              )}
-            </button>
-          </nav>
-        </div>
-
-        {searchOpen && (
-          <div id="navbar-search" className="nav-panel nav-panel--search">
-            <div className="nav-panel-inner">
-              <div className="nav-search">
-                <Search className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+            {searchOpen ? (
+              <div id="navbar-search" className="nav-search-inline is-open" role="search">
+                <Search className="ui-icon nav-search-icon" size={15} strokeWidth={2} aria-hidden="true" />
                 <input
                   ref={searchInputRef}
                   className="nav-search-input"
                   type="search"
                   value={searchQuery}
                   onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQuery(event.target.value)}
-                  placeholder="Hledat poznámky podle názvu, tématu nebo data..."
+                  placeholder="Hledat poznámky…"
                   aria-label="Hledat poznámky"
                 />
                 {searchQuery && (
@@ -166,13 +146,39 @@ export default function App() {
                     onClick={() => setSearchQuery('')}
                     aria-label="Vymazat vyhledávání"
                   >
-                    <X className="ui-icon" size={14} strokeWidth={2} aria-hidden="true" />
+                    <X className="ui-icon" size={13} strokeWidth={2} aria-hidden="true" />
                   </button>
                 )}
+                <button
+                  type="button"
+                  className="nav-search-close"
+                  onClick={() => {
+                    setSearchQuery('')
+                    setSearchOpen(false)
+                  }}
+                  aria-label="Zavřít vyhledávání"
+                  title="Zavřít vyhledávání"
+                >
+                  <X className="ui-icon" size={14} strokeWidth={2} aria-hidden="true" />
+                </button>
               </div>
-            </div>
-          </div>
-        )}
+            ) : (
+              <button
+                type="button"
+                className="nav-button search-toggle"
+                onClick={handleSearchToggle}
+                title="Vyhledávání"
+                aria-label="Vyhledávání"
+                aria-expanded={false}
+                aria-controls="navbar-search"
+              >
+                <Search className="ui-icon" size={15} strokeWidth={2} aria-hidden="true" />
+              </button>
+            )}
+          </nav>
+        </div>
+
+
       </header>
 
       {selectedPost ? (
