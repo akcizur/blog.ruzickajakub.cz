@@ -183,7 +183,7 @@ export default function App() {
             ) : (
               <button
                 type="button"
-                className="nav-button nav-search-trigger"
+                className="nav-button"
                 onClick={() => setSearchOpen(true)}
                 title="Vyhledávání"
                 aria-label="Otevřít vyhledávání"
